@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:devlog_insight/data/models/dev_log_model.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+	WidgetsFlutterBinding.ensureInitialized();
+
+	await Hive.initFlutter();
+	Hive.registerAdapter(DevLogModelAdapter());
+	await Hive.openBox<DevLogModel>('devLogs');
+
+	runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +39,10 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        appBar: AppBar(title: const Text('DevLog Insight')),
+        body: const Center(child: Text('앱 초기화 완료!')),
+      ),
     );
   }
 }
