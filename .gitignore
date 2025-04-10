@@ -120,4 +120,4 @@ app.*.symbols
 
 # IDE 설정 파일 무시
 .idea/
-*.iml
+*.iml.DS_Store
