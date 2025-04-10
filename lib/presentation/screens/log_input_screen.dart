@@ -21,7 +21,7 @@ class _LogInputScreenState extends ConsumerState<LogInputScreen> {
 	}
 
 	Future<void> _saveLog() async {
-		final message = _messageController.text.trim();
+        final String message = _messageController.text.trim();
 		if (message.isEmpty) return;
 
 		await ref.read(logViewModelProvider).save(
@@ -31,9 +31,10 @@ class _LogInputScreenState extends ConsumerState<LogInputScreen> {
 		);
 
 		_messageController.clear();
-		ScaffoldMessenger.of(context).showSnackBar(
-			const SnackBar(content: Text('저장 완료!')),
-		);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('저장 완료!')),
+        );
 	}
 
 	@override
