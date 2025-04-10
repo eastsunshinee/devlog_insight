@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:devlog_insight/data/models/dev_log_model.dart';
+import 'package:devlog_insight/presentation/screens/log_input_screen.dart';
 
 void main() async {
 	WidgetsFlutterBinding.ensureInitialized();
@@ -15,12 +16,12 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'DevLog Insight',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -37,12 +38,14 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: Scaffold(
-        appBar: AppBar(title: const Text('DevLog Insight')),
-        body: const Center(child: Text('앱 초기화 완료!')),
-      ),
+    //   home: Scaffold(
+    //     appBar: AppBar(title: const Text('DevLog Insight')),
+    //     body: const Center(child: Text('앱 초기화 완료!')),
+    //   ),
+      home: const LogInputScreen(),
     );
   }
 }
